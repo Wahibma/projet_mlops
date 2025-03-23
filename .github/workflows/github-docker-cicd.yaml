@@ -1,4 +1,4 @@
-name: CI-CD Pipeline Loan-Default-Prediction
+name: projet_mlops
 
 env:
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
