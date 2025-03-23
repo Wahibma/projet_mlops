@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: eu-west-3          # Région AWS préférée
+  AWS_REGION: eu-north-1          # Région AWS où le dépôt ECR a été créé
   ECR_REPOSITORY: wahibma/projet_mlops       # Nom du dépôt ECR (en minuscules)
   ECS_SERVICE: projetmlopsService            # Nom du service ECS
   ECS_CLUSTER: projet_mlopsCluster           # Nom du cluster ECS
