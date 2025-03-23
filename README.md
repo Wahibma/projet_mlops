@@ -11,3 +11,6 @@ L’objectif principal est de construire une image Docker et un pipeline CI/CD p
 -  **Suivi du modèle** : tracking des métriques et des artefacts avec MLflow.
 
 -  **Déploiement d’applications** : mise en place d’un pipeline CI/CD pour automatiser le déploiement sur AWS ECS.
+
+
+# Outils utilisé
