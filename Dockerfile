@@ -1,14 +1,18 @@
+# Utilisation d'une image Python légère
 FROM python:3.9-slim
 
-# Working Directory
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copy source code to working directory
-COPY .  /app/
+# Copier requirements.txt en premier pour optimiser le cache
+COPY requirements.txt /app/
 
-# Install packages from requirements.txt
+# Installer les dépendances AVANT de copier tout le projet
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --no-cache-dir --upgrade pip &&\
-    pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+# Maintenant, copier le reste des fichiers du projet
+COPY . /app/
 
-CMD ["python", "app.py"]
+# Définir la commande d'exécution
+CMD ["python", "app.py"]  
