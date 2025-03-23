@@ -5,12 +5,12 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: eu-north-1
-  ECR_REPOSITORY: wahibma/projet_mlops
-  ECS_SERVICE: projetmlopsService
-  ECS_CLUSTER: projet_mlopsCluster
-  ECS_TASK_DEFINITION: mlopsRL
-  CONTAINER_NAME: projetmlopsConteneur
+  AWS_REGION: eu-north-1          # Région AWS où le dépôt ECR a été créé
+  ECR_REPOSITORY: wahibma/projet_mlops       # Nom du dépôt ECR (en minuscules)
+  ECS_SERVICE: projetmlopsService            # Nom du service ECS
+  ECS_CLUSTER: projet_mlopsCluster           # Nom du cluster ECS
+  ECS_TASK_DEFINITION: mlopsRL               # Nom de la définition de tâche ECS
+  CONTAINER_NAME: projetmlopsConteneur       # Nom du conteneur dans la définition de tâche
 
 permissions:
   contents: read
@@ -42,6 +42,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
+        # Construire un conteneur Docker et le pousser vers ECR
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
