@@ -15,3 +15,4 @@ L’objectif principal est de construire une image Docker et un pipeline CI/CD p
 
 # Outils utilisé
 - Github
+- VsCode
