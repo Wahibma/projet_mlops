@@ -1,4 +1,4 @@
-name: Github-Docker Hub MLOps pipeline - Dini
+name: Github-Docker Hub MLOps pipeline - Wahib
 
 env:
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
