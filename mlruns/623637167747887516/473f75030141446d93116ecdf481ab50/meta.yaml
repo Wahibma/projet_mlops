@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/623637167747887516/473f75030141446d93116ecdf481ab50/artifacts
+end_time: 1742749532002
+entry_point_name: ''
+experiment_id: '623637167747887516'
+lifecycle_stage: active
+run_id: 473f75030141446d93116ecdf481ab50
+run_name: Random_Forest_depth_6_estimators_50
+run_uuid: 473f75030141446d93116ecdf481ab50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742749523224
+status: 3
+tags: []
+user_id: wahib

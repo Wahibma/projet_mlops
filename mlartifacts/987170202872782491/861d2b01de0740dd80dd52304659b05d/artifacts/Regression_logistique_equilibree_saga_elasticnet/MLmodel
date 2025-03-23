@@ -1,0 +1,20 @@
+artifact_path: Regression_logistique_equilibree_saga_elasticnet
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.1
+mlflow_version: 2.16.0
+model_size_bytes: 990
+model_uuid: 65d88346212e4016afa7dd6943bbbd7f
+run_id: 861d2b01de0740dd80dd52304659b05d
+utc_time_created: '2025-03-23 17:04:42.634155'

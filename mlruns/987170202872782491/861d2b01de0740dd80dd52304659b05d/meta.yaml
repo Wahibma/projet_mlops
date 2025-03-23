@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/987170202872782491/861d2b01de0740dd80dd52304659b05d/artifacts
+end_time: 1742749498298
+entry_point_name: ''
+experiment_id: '987170202872782491'
+lifecycle_stage: active
+run_id: 861d2b01de0740dd80dd52304659b05d
+run_name: Regression_logistique_equilibree_saga_elasticnet
+run_uuid: 861d2b01de0740dd80dd52304659b05d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742749481956
+status: 3
+tags: []
+user_id: wahib
