@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide à la Décision de Prêt</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Aide à la Décision de Prêt</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="credit_lines_outstanding">Nombre de Crédits en Cours</label>
+                <input type="number" class="form-control" id="credit_lines_outstanding" name="credit_lines_outstanding" required>
+            </div>
+            <div class="form-group">
+                <label for="loan_amt_outstanding">Montant du Prêt en Cours</label>
+                <input type="number" class="form-control" id="loan_amt_outstanding" name="loan_amt_outstanding" required>
+            </div>
+            <div class="form-group">
+                <label for="total_debt_outstanding">Dette Totale</label>
+                <input type="number" class="form-control" id="total_debt_outstanding" name="total_debt_outstanding" required>
+            </div>
+            <div class="form-group">
+                <label for="income">Revenu Annuel</label>
+                <input type="number" class="form-control" id="income" name="income" required>
+            </div>
+            <div class="form-group">
+                <label for="years_employed">Années d'Emploi</label>
+                <input type="number" class="form-control" id="years_employed" name="years_employed" required>
+            </div>
+            <div class="form-group">
+                <label for="fico_score">Score de Crédit (300-850)</label>
+                <input type="number" class="form-control" id="fico_score" name="fico_score" min="300" max="850" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Obtenir le Résultat</button>
+        </form>
+        {% if prediction_text %}
+            <div class="result mt-4">
+                <h4>Résultat :</h4>
+                <p>{{ prediction_text }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS et jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
