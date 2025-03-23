@@ -5,10 +5,6 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   REPO_NAME: ${{ secrets.REPO_NAME }}
 
-# Event Triggers:
-# The pipeline is triggered whenever there is a push to the main branch.
-# It is also triggered whenever there is a pull request to the main branch.
-
 on:
   push:
     branches:
@@ -17,35 +13,33 @@ on:
     branches:
       - main
 
-# this pipeline consists of a two jobs named ci_pipeline
-
 jobs:
   ci_pipeline:
-    runs-on: ubuntu-latest     # The job runs on the ubuntu-latest operating system
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2  # The first step uses the actions/checkout@v2 action to clone the repository.
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # The fetch-depth: 0 parameter ensures that the complete commit history is fetched.
+          fetch-depth: 0
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9  # The second step sets up Python 3.9 by using the actions/setup-python@v2 action.
+          python-version: 3.9
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  # The third step installs the project dependencies.
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Format
-        run: black app.py  # The fourth step formats the app.py file using the black code formatter.
+        run: black app.py
 
       - name: Lint
-        run: pylint --disable=R,C app.py  # The fifth step performs linting on the app.py file using pylint.
+        run: pylint --disable=R,C app.py
 
       - name: Test
-        run: python -m pytest -vv test.py  # The sixth step runs the tests using pytest.
+        run: python -m pytest -vv test.py
 
   cd_pipeline:
     runs-on: ubuntu-latest
@@ -54,19 +48,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker login
-        run: |  # Log into Docker Hub account
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Vérifier les variables d'environnement
+        run: |
+          echo "DOCKER_USER=$DOCKER_USER"
+          echo "REPO_NAME=$REPO_NAME"
 
-      - name: Get current date  # Get the date of the build
+      - name: Docker login
+        run: |
+          docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+
+      - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%H-%M-%S')"
+        run: echo "date=$(date +'%Y-%m-%d--%H-%M-%S')" >> "$GITHUB_ENV"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build the Docker image  # Build the Docker image
-        run: docker buildx build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+      - name: Build the Docker image
+        run: docker buildx build . --file Dockerfile --tag "$DOCKER_USER/$REPO_NAME:$date"
 
-      - name: Docker Push  # Push the Docker image to Docker Hub
-        run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+      - name: Docker Push
+        run: docker push "$DOCKER_USER/$REPO_NAME:$date"
