@@ -7,3 +7,4 @@ pandas ==1.5.3
 Werkzeug==2.2.2
 numpy==1.26.4
 arize==7.18.1
+scikit-learn
