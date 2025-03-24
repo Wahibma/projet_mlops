@@ -17,4 +17,5 @@ L’objectif principal est de construire une image Docker et un pipeline CI/CD p
 - Github
 - VsCode
 - AWS
-- Docker
+- Docker 
+- 
