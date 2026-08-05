@@ -12,10 +12,9 @@ L’objectif principal est de construire une image Docker et un pipeline CI/CD p
 
 -  **Déploiement d’applications** : mise en place d’un pipeline CI/CD pour automatiser le déploiement sur AWS ECS.
 
-
-# Outils utilisé
+# Outils utilisés
 - Github
 - VsCode
 - AWS
-- Docker 
-- 
+- Docker
+
